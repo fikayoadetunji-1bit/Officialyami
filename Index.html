@@ -1,0 +1,208 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>YAMI | Archive 01</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root { --bg: #ffffff; --black: #000000; --grey: #f9f9f9; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        
+        body { 
+            background-color: var(--bg); 
+            color: var(--black); 
+            font-family: 'Space Grotesk', sans-serif; 
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        nav { 
+            padding: 20px 5%; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            position: sticky; 
+            top: 0; 
+            background: rgba(255,255,255,0.9); 
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid #eee;
+        }
+
+        .logo-small { height: 30px; width: auto; }
+        .nav-drop { font-weight: 700; font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase; }
+
+        .hero { 
+            height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 10%;
+            text-align: center;
+        }
+
+        .hero h1 { 
+            font-family: 'Syne', sans-serif; 
+            font-size: clamp(1.8rem, 9vw, 3.5rem); 
+            text-transform: uppercase; 
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        .shop { padding: 20px 5% 80px; }
+        .grid { display: grid; grid-template-columns: 1fr; gap: 40px; }
+        @media (min-width: 768px) { .grid { grid-template-columns: 1fr 1fr; } }
+
+        .img-container { background: var(--grey); padding: 30px; position: relative; }
+        .product-img { width: 100%; height: auto; display: block; }
+
+        .details { padding: 15px 0; display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid #eee; margin-bottom: 10px; }
+        .details h3 { font-family: 'Syne', sans-serif; font-size: 0.75rem; text-transform: uppercase; max-width: 70%; }
+        .price { font-weight: 700; font-size: 0.85rem; }
+
+        .buy-btn { 
+            background: var(--black); color: #fff; border: none; padding: 18px; 
+            width: 100%; font-family: 'Syne'; text-transform: uppercase; 
+            letter-spacing: 3px; font-size: 0.65rem; cursor: pointer;
+        }
+
+        footer { padding: 80px 5% 40px; background: #000; color: #fff; text-align: center; }
+        .contact-grid { display: flex; flex-direction: column; gap: 25px; }
+        .contact-item { text-decoration: none; color: #fff; }
+        .contact-label { font-size: 0.5rem; color: #666; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 4px; }
+        .contact-val { font-size: 0.9rem; font-weight: 700; }
+
+        #checkout-modal {
+            display: none; position: fixed; top:0; left:0; width:100%; height:100%;
+            background: #fff; z-index: 2000; align-items: center; justify-content: center;
+        }
+        .modal-inner { width: 85%; max-width: 400px; }
+        input { width: 100%; padding: 15px 0; border: none; border-bottom: 1px solid #000; margin-bottom: 15px; font-family: inherit; font-size: 1rem; outline: none; }
+
+        .payment-box { background: #f9f9f9; padding: 25px; margin-top: 20px; font-size: 0.85rem; line-height: 1.8; border: 1px solid #eee; }
+        .receipt-note { display: block; margin-top: 15px; color: #d00000; font-weight: 700; text-transform: uppercase; font-size: 0.7rem; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <img src="https://i.postimg.cc/43vSWzZS/logo.jpg" class="logo-small">
+        <div class="nav-drop">Archive 01</div>
+    </nav>
+
+    <header class="hero">
+        <h1>&quot;Stay Rare,<br>Most Are Copies.&quot;</h1>
+    </header>
+
+    <section class="shop">
+        <div class="grid">
+            <div class="card">
+                <div class="img-container"><img src="https://i.postimg.cc/HWvPvWD9/p1.jpg" class="product-img"></div>
+                <div class="details"><h3>Future Motion Tee</h3><p class="price">$50</p></div>
+                <button class="buy-btn" onclick="openVault(50, 'Future Motion Tee')">Purchase</button>
+            </div>
+            <div class="card">
+                <div class="img-container"><img src="https://i.postimg.cc/K8SfCR9z/p2.jpg" class="product-img"></div>
+                <div class="details"><h3>Beyond Tomorrow Tee</h3><p class="price">$35</p></div>
+                <button class="buy-btn" onclick="openVault(35, 'Beyond Tomorrow Tee')">Purchase</button>
+            </div>
+            <div class="card">
+                <div class="img-container"><img src="https://i.postimg.cc/8cfd0SMr/p3.jpg" class="product-img"></div>
+                <div class="details"><h3>Chrome Future Tee</h3><p class="price">$35</p></div>
+                <button class="buy-btn" onclick="openVault(35, 'Chrome Future Tee')">Purchase</button>
+            </div>
+            <div class="card">
+                <div class="img-container"><img src="https://i.postimg.cc/gcxfWLKD/p4.jpg" class="product-img"></div>
+                <div class="details"><h3>2000X Tee</h3><p class="price">$30</p></div>
+                <button class="buy-btn" onclick="openVault(30, '2000X Tee')">Purchase</button>
+            </div>
+            <div class="card">
+                <div class="img-container"><img src="https://i.postimg.cc/ZYXXKYfg/p5.jpg" class="product-img"></div>
+                <div class="details"><h3>YAMI &quot;Beyond Reality&quot; Tee</h3><p class="price">Soon</p></div>
+                <button class="buy-btn" style="opacity: 0.3">Locked</button>
+            </div>
+            <div class="card">
+                <div class="img-container"><img src="https://i.postimg.cc/2S7twQzz/p6.jpg" class="product-img"></div>
+                <div class="details"><h3>YAMI &quot;Beyond Reality&quot; Tee</h3><p class="price">Soon</p></div>
+                <button class="buy-btn" style="opacity: 0.3">Locked</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="contact-grid">
+            <a href="mailto:Shop.yami01@gmail.com" class="contact-item"><p class="contact-label">Email</p><p class="contact-val">Shop.yami01@gmail.com</p></a>
+            <a href="https://www.tiktok.com/@officialyami06" target="_blank" class="contact-item"><p class="contact-label">TikTok</p><p class="contact-val">@officialyami06</p></a>
+            <a href="https://www.instagram.com/officialyami01" target="_blank" class="contact-item"><p class="contact-label">Instagram</p><p class="contact-val">@officialyami01</p></a>
+            <a href="https://wa.me/2348168214144" target="_blank" class="contact-item"><p class="contact-label">WhatsApp 1</p><p class="contact-val">0816 821 4144</p></a>
+            <a href="https://wa.me/2348027303392" target="_blank" class="contact-item"><p class="contact-label">WhatsApp 2</p><p class="contact-val">0802 730 3392</p></a>
+        </div>
+        <p style="margin-top: 50px; font-size: 0.5rem; color: #444; letter-spacing: 3px;">YAMI STREET LUXURY &copy; 2026</p>
+    </footer>
+
+    <div id="checkout-modal">
+        <div class="modal-inner">
+            <h2 id="m-name" style="font-family: 'Syne'; margin-bottom: 20px;">VAULT</h2>
+            <input type="text" id="u-name" placeholder="Name (Required)">
+            <input type="email" id="u-email" placeholder="Email Address">
+            <input type="tel" id="u-phone" placeholder="WhatsApp Number">
+
+            <button class="buy-btn" onclick="autoTypeWhatsApp()">Confirm & Send Receipt</button>
+            
+            <div class="payment-box">
+                <strong>TRANSFER DETAILS:</strong><br><br>
+                OPAY: 8168214144 | ACCESS: 1951950060<br>
+                NAME: KHALID KOLADE USMAN<br>
+                <span class="receipt-note">Send receipt to WhatsApp after transfer.</span>
+            </div>
+            
+            <p onclick="closeVault()" style="text-align: center; margin-top: 20px; font-size: 0.7rem; cursor: pointer;">CANCEL</p>
+        </div>
+    </div>
+
+    <script>
+        const NGN = 1400; 
+        let active = { p: 0, n: "" };
+
+        function openVault(p, n) { 
+            active = { p, n }; 
+            document.getElementById('m-name').innerText = n; 
+            document.getElementById('checkout-modal').style.display = 'flex'; 
+        }
+
+        function closeVault() { document.getElementById('checkout-modal').style.display = 'none'; }
+
+        function autoTypeWhatsApp() {
+            const name = document.getElementById('u-name').value;
+            const email = document.getElementById('u-email').value;
+            const phone = document.getElementById('u-phone').value;
+
+            if(!name) return alert("Your Name is required.");
+            if(!email && !phone) return alert("Please provide at least an Email or a WhatsApp number.");
+            
+            const priceNaira = (active.p * NGN).toLocaleString();
+            
+            // Fixed the Naira symbol issue by using "NGN" text instead of the symbol which often breaks in URLs
+            const message = `Hello YAMI, I am ready to purchase.
+            
+INFO:
+Name: ${name}
+${email ? 'Email: ' + email : ''}
+${phone ? 'WhatsApp: ' + phone : ''}
+
+ITEM: ${active.n} (NGN ${priceNaira})
+
+I am attaching my transfer receipt below.`;
+
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/2348168214144?text=${encodedMessage}`, '_blank');
+        }
+    </script>
+</body>
+</html>
